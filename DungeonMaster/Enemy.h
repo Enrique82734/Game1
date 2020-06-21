@@ -7,14 +7,14 @@ using namespace std;
 class Enemy
 {
 public:
-	int life, power, defence;
+	int life, power, defence, enemyid;
 	bool alive;
 	string name;
 	string text;
 	map<int, string> enemyInventory;
 
 	Enemy();
-	Enemy(int _life, int _power, int _defence, bool _alive, string _name, string _text, map<int, string> _enemyInventory);
+	Enemy(int _enemyid, int _life, int _power, int _defence, bool _alive, string _name, string _text, map<int, string> _enemyInventory);
 
 	virtual ~Enemy();
 };

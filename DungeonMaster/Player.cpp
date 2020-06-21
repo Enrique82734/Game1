@@ -387,8 +387,10 @@ void Player::roomInformation(map<int, Room> roomInfo)
 
 void Player::attackEnemy(int enemyPos, map<int, Room>& roomEnemy)
 {
-	if (roomEnemy.at(actualRoom).enemies.at(enemyPos)->defence < power) {
-		roomEnemy.at(actualRoom).enemies.at(enemyPos)->life = roomEnemy.at(actualRoom).enemies.at(enemyPos)->life - (power - roomEnemy.at(actualRoom).enemies.at(enemyPos)->defence);
+	if (roomEnemy.at(actualRoom).enemies.at(enemyPos - 1)->enemyid == enemyPos) {
+		if (roomEnemy.at(actualRoom).enemies.at(enemyPos)->defence < power) {
+			roomEnemy.at(actualRoom).enemies.at(enemyPos)->life = roomEnemy.at(actualRoom).enemies.at(enemyPos)->life - (power - roomEnemy.at(actualRoom).enemies.at(enemyPos)->defence);
+		}
 	}
 
 	if (roomEnemy.at(actualRoom).enemies.at(enemyPos)->life <= 0) {
@@ -499,6 +501,36 @@ void Player::inventory()
 			}
 		}
 	}
+}
+
+void Player::saveGame(Player &jug) {
+	ofstream archivo;
+	archivo.open("save.txt", ios::out); //Abriendo el archivo
+	if (archivo.fail()) {
+		cout << "No se pudo abrir el archivo." << endl;
+		exit(1);
+	}
+
+	string saveRoom;
+
+	archivo << actualRoom;
+
+	archivo.close(); //cerrar el archivo
+}
+
+void Player::loadGame(Player &jug) {
+	string line;
+	ifstream myfile("save.txt");
+	int habSa;
+	if (myfile.is_open()) {
+		while (getline(myfile, line)) {
+			cout << line << '\n';
+		}
+		habSa = std::stoi(line);
+		myfile.close();
+	} else cout << "Unable to open file";
+
+	jug.actualRoom;
 }
 
 void Player::lootEnemies(int enemyLoot, map<int, string> roomEnemy/*map<int, Room>& roomEnemy*/)

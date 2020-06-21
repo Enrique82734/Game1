@@ -6,8 +6,9 @@ Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(int _life, int _power, int _defence, bool _alive, string _name, string _text, map<int, string> _enemyInventory)
+Enemy::Enemy(int _enemyid, int _life, int _power, int _defence, bool _alive, string _name, string _text, map<int, string> _enemyInventory)
 {
+	enemyid = _enemyid;
 	life = _life;
 	power = _power;
 	defence = _defence;

@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <cctype>
 #include <sstream>
+#include <fstream>
 
 //Incluir siempre que uses cout
 #include <iostream>
@@ -100,6 +101,10 @@ public:
 
 	// Recorrer todas las listas y poner informacion de ellas
 	void inventory();
+
+	//Guardar y leer partida anterior
+	void loadGame(Player&);
+	void saveGame(Player&);
 
 	// Lootear el enemigo si tiene algo en el inventario
 	// Si no regresa el mensaje de que no tiene loot
